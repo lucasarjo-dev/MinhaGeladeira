@@ -1,4 +1,7 @@
-package org.example;
+package org.example.dao;
+
+import org.example.database.DatabaseConnection;
+import org.example.model.Recipe;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RecipesDAO {
-    public void save(Recipes recipes) throws SQLException {
+public class RecipeDAO {
+    public void save(Recipe recipes) throws SQLException {
         Connection conn = DatabaseConnection.getConnection();
         String query = "INSERT INTO recipe(name, description, preparation_time, difficulty) VALUES(?,?,?,?)";
 
@@ -21,16 +24,16 @@ public class RecipesDAO {
 
     }
 
-    public ArrayList<Recipes> findAll() throws SQLException {
+    public ArrayList<Recipe> findAll() throws SQLException {
         Connection conn = DatabaseConnection.getConnection();
 
         String query = "SELECT id, name, description, preparation_time, difficulty FROM recipe";
         PreparedStatement ps = conn.prepareStatement(query);
         ResultSet rs = ps.executeQuery();
-        ArrayList<Recipes> recipesArrayList = new ArrayList<>();
+        ArrayList<Recipe> recipesArrayList = new ArrayList<>();
 
         while (rs.next()) {
-            Recipes recipe = new Recipes();
+            Recipe recipe = new Recipe();
             String name = rs.getString("name");
             recipe.setName(name);
 
@@ -57,8 +60,8 @@ public class RecipesDAO {
     }
     public void populateRecipes() throws SQLException {
 
-        Recipes recipe = new Recipes();
-        RecipesDAO recipesDAO = new RecipesDAO();
+        Recipe recipe = new Recipe();
+        RecipeDAO recipesDAO = new RecipeDAO();
 
         recipe.setName("Bolo de milho de lata");
         recipe.setDescription("Escorra o milho e use a própria lata para as medidas.\n" +

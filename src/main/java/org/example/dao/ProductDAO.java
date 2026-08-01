@@ -1,8 +1,11 @@
-package org.example;
+package org.example.dao;
+import org.example.database.DatabaseConnection;
+import org.example.model.Product;
+
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ProductsDAO {
+public class ProductDAO {
 
     public void save(Product products) throws SQLException {
         Connection conn = DatabaseConnection.getConnection();
@@ -20,7 +23,8 @@ public class ProductsDAO {
     public ArrayList<Product> findAll() throws SQLException {
         Connection conn = DatabaseConnection.getConnection();
 
-        String query = "SELECT products.id, products.name, stock.quantity, products.category_id FROM products INNER JOIN stock ON products.id = stock.product_id";
+        String query = "SELECT products.id, products.name, stock.quantity, products.category_id FROM products " +
+                "INNER JOIN stock ON products.id = stock.product_id";
         PreparedStatement ps = conn.prepareStatement(query);
         ResultSet rs = ps.executeQuery();
         ArrayList<Product> products = new ArrayList<>();
@@ -32,9 +36,6 @@ public class ProductsDAO {
 
             int id = rs.getInt("id");
             product.setId(id);
-
-
-
 
             int categoryId = rs.getInt("category_id");
             product.setCategoryId(categoryId);

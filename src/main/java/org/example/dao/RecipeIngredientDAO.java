@@ -1,4 +1,7 @@
-package org.example;
+package org.example.dao;
+import org.example.database.DatabaseConnection;
+import org.example.model.RecipeIngredient;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

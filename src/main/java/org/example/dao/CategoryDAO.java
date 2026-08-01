@@ -1,4 +1,7 @@
-package org.example;
+package org.example.dao;
+import org.example.database.DatabaseConnection;
+import org.example.model.Category;
+
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -10,11 +13,11 @@ public class CategoryDAO {
 
 public void save(Category category) throws SQLException {
 
-        System.out.println("Salvando categoria...");
+
 
         Connection conn = DatabaseConnection.getConnection();
-        String sql = "INSERT INTO categories(name) VALUES(?)";
-        PreparedStatement ps = conn.prepareStatement(sql);
+        String query = "INSERT INTO categories(name) VALUES(?)";
+        PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, category.getName());
         ps.executeUpdate();
 
@@ -36,9 +39,7 @@ public void save(Category category) throws SQLException {
             category.setId(id);
             categories.add(category);
 
-            System.out.println("Id salvo =" + id);
-            System.out.println("Categoria salva =" + name);
-            System.out.println("Salvo com sucesso.");
+
 
         }
         return categories;

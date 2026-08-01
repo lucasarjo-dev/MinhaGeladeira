@@ -1,8 +1,6 @@
-package org.example;
+package org.example.model;
 
-import java.sql.SQLException;
-
-public class Recipes {
+public class Recipe {
     private int id;
     private String name;
     private String description;

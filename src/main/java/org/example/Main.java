@@ -1,4 +1,11 @@
 package org.example;
+import org.example.dao.*;
+import org.example.manager.RecipeManager;
+import org.example.model.Category;
+import org.example.model.Product;
+import org.example.model.Recipe;
+import org.example.model.Stock;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,18 +49,29 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.println("Listar categorias");
-                    CategoryDAO c = new CategoryDAO();
-                    System.out.println(c.findAll());
+                    System.out.println("===== CATEGORIAS CADASTRADAS =====");
+
+                    CategoryDAO categoryDAO1 = new CategoryDAO();
+
+                    ArrayList<Category> categories = categoryDAO1.findAll();
+
+                    for (Category categoryList : categories) {
+
+                        System.out.println("------------------------------");
+                        System.out.println("ID: " + categoryList.getId());
+                        System.out.println("Nome: " + categoryList.getName());
+
+                    }
+
                     break;
 
                 case 3:
                     System.out.println("Cadastrar produto");
                     CategoryDAO categoryDAOProduct  = new CategoryDAO();
 
-                    ArrayList<Category> categories = categoryDAOProduct .findAll();
+                    ArrayList<Category> categories1 = categoryDAOProduct .findAll();
 
-                    for(Category i : categories){
+                    for(Category i : categories1){
                         System.out.println(
                                 i.getId() + " - " + i.getName()
                         );
@@ -65,10 +83,10 @@ public class Main {
 
                     Category selectedCategory = null;
 
-                    for(Category i : categories){
+                    for(Category category1 : categories1){
 
-                        if(i.getId() == choice){
-                            selectedCategory = i;
+                        if(category1.getId() == choice){
+                            selectedCategory = category1;
                             break;
                         }
 
@@ -79,7 +97,7 @@ public class Main {
                         break;
                     }
 
-                    ProductsDAO productsDAO = new ProductsDAO();
+                    ProductDAO productsDAO = new ProductDAO();
                     Product product = new Product();
 
                     System.out.println("Digite o nome do produto:");
@@ -101,7 +119,7 @@ public class Main {
                     System.out.println("Listar produtos");
                     System.out.println("===== PRODUTOS CADASTRADOS =====");
 
-                    ProductsDAO productsDAO1 = new ProductsDAO();
+                    ProductDAO productsDAO1 = new ProductDAO();
                     StockDAO stockDAO = new StockDAO();
 
                     ArrayList<Product> products = productsDAO1.findAll();
@@ -127,11 +145,11 @@ public class Main {
 
                     System.out.println("===== RECEITAS DISPONÍVEIS =====");
 
-                    RecipesDAO recipesDAO = new RecipesDAO();
+                    RecipeDAO recipesDAO = new RecipeDAO();
 
-                    ArrayList<Recipes> recipesArrayList = recipesDAO.findAll();
+                    ArrayList<Recipe> recipesArrayList = recipesDAO.findAll();
 
-                    for (Recipes recipe : recipesArrayList) {
+                    for (Recipe recipe : recipesArrayList) {
 
                         System.out.println(recipe.getId() + " - " + recipe.getName());
 
@@ -145,7 +163,7 @@ public class Main {
 
                     boolean found = false;
 
-                    for (Recipes recipe : recipesArrayList) {
+                    for (Recipe recipe : recipesArrayList) {
 
                         if (recipe.getId() == recipeChoice) {
 
@@ -171,13 +189,13 @@ public class Main {
 
                     RecipeManager recipeManager = new RecipeManager();
 
-                    RecipesDAO recipesDAO1 = new RecipesDAO();
+                    RecipeDAO recipesDAO1 = new RecipeDAO();
 
-                    ArrayList<Recipes> availableRecipes = recipesDAO1.findAll();
+                    ArrayList<Recipe> availableRecipes = recipesDAO1.findAll();
 
                     System.out.println("===== PREPARAR RECEITA =====");
 
-                    for (Recipes recipe : availableRecipes) {
+                    for (Recipe recipe : availableRecipes) {
 
                         System.out.println(recipe.getId() + " - " + recipe.getName());
 
@@ -193,7 +211,7 @@ public class Main {
 
                     break;
                 case 9:
-                    RecipesDAO addRecipe = new RecipesDAO();
+                    RecipeDAO addRecipe = new RecipeDAO();
                     addRecipe.populateRecipes();
                     break;
 

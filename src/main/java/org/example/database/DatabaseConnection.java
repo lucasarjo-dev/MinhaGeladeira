@@ -1,4 +1,4 @@
-package org.example;
+package org.example.database;
 import java.sql.*;
 public class DatabaseConnection {
 private static final String url = "jdbc:mysql://127.0.0.1:3306/myfridge?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";

@@ -1,7 +1,4 @@
-package org.example;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
+package org.example.model;
 
 public class RecipeIngredient {
     private int id;

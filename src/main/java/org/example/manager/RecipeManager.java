@@ -1,4 +1,9 @@
-package org.example;
+package org.example.manager;
+
+import org.example.dao.RecipeIngredientDAO;
+import org.example.dao.StockDAO;
+import org.example.model.RecipeIngredient;
+import org.example.model.Stock;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

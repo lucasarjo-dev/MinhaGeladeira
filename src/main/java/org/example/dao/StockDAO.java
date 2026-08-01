@@ -1,4 +1,7 @@
-package org.example;
+package org.example.dao;
+
+import org.example.database.DatabaseConnection;
+import org.example.model.Stock;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
