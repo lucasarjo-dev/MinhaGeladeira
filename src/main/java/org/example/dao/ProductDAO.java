@@ -7,19 +7,23 @@ import java.util.ArrayList;
 
 public class ProductDAO {
 
-    public void save(Product products) throws SQLException {
+   public void save(Product products) throws SQLException {
         Connection conn = DatabaseConnection.getConnection();
         String query = "INSERT INTO products(name, unit, category_id) VALUES(?, ?, ?)";
+        PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-        PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, products.getName());
-
+        ps.setString(2, products.getUnit());
         ps.setInt(3, products.getCategoryId());
+
         ps.executeUpdate();
 
+        ResultSet keys = ps.getGeneratedKeys();
 
+        if (keys.next()) {
+            products.setId(keys.getInt(1));
+        }
     }
-
     public ArrayList<Product> findAll() throws SQLException {
         Connection conn = DatabaseConnection.getConnection();
 
