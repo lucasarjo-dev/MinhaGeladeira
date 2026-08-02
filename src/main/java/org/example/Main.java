@@ -20,7 +20,7 @@ public class Main {
 
         while (running) {
 
-            System.out.println("\n===== MyFridge =====");
+            System.out.println("\n===== MinhaGeladeira =====");
             System.out.println("1 - Cadastrar categoria");
             System.out.println("2 - Listar categorias");
             System.out.println("3 - Cadastrar produto");
