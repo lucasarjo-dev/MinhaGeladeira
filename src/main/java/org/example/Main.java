@@ -65,7 +65,7 @@ public class Main {
 
                     break;
 
-                case 3:
+                   case 3:
                     System.out.println("Cadastrar produto");
                     CategoryDAO categoryDAOProduct  = new CategoryDAO();
 
@@ -97,22 +97,32 @@ public class Main {
                         break;
                     }
 
-                    ProductDAO productsDAO = new ProductDAO();
+                    ProductDAO productDAO = new ProductDAO();
+                    StockDAO stockDAO = new StockDAO();
+
                     Product product = new Product();
 
-                    System.out.println("Digite o nome do produto:");
-                    String productName = sc.nextLine();
-                    product.setName(productName);
+                    System.out.print("Nome: ");
+                    product.setName(sc.nextLine());
 
-                    System.out.println("Digite a quantidade de unidades: (Ex: Litros, Caixas, Gramas...");
-                    String productUnit = sc.nextLine();
-                    product.setUnit(productUnit);
+                    System.out.print("Unidade: ");
+                    product.setUnit(sc.nextLine());
 
                     product.setCategoryId(selectedCategory.getId());
-                    productsDAO.save(product);
+
+                    productDAO.save(product);
+
+                    System.out.print("Quantidade inicial: ");
+                    double quantity = sc.nextDouble();
+                    sc.nextLine();
+
+                    Stock stock = new Stock();
+                    stock.setProductId(product.getId());
+                    stock.setQuantity(quantity);
+
+                    stockDAO.save(stock);
+
                     System.out.println("Produto cadastrado com sucesso!");
-
-
                     break;
 
                 case 4:
