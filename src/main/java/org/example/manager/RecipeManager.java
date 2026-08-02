@@ -19,8 +19,7 @@ public class RecipeManager {
 
         for (RecipeIngredient ingredient : ingredients) {
 
-            Stock stock =
-                    stockDAO.findByProductId(ingredient.getProductId());
+            Stock stock = stockDAO.findByProductId(ingredient.getProductId());
 
             if (stock == null) {
                 return false;
@@ -49,16 +48,11 @@ public class RecipeManager {
 
         for (RecipeIngredient ingredient : ingredients) {
 
-            Stock stock =
-                    stockDAO.findByProductId(ingredient.getProductId());
+            Stock stock = stockDAO.findByProductId(ingredient.getProductId());
 
-            double newQuantity =
-                    stock.getQuantity() - ingredient.getQuantity();
+            double newQuantity = stock.getQuantity() - ingredient.getQuantity();
 
-            stockDAO.updateQuantity(
-                    ingredient.getProductId(),
-                    newQuantity
-            );
+            stockDAO.updateQuantity(ingredient.getProductId(), newQuantity);
         }
 
         System.out.println("Receita preparada com sucesso!");
