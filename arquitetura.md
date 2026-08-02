@@ -2,6 +2,15 @@
 
 <img width="446" height="172" alt="image" src="https://github.com/user-attachments/assets/59200426-b741-4438-bdb1-447f90ad5c78" />
 
+## Índice
+
+- [Conteúdo dos packages](#conteúdo-dos-packages)
+  - [dao (Data Access Object)](#dao-data-access-object)
+  - [database](#database)
+  - [manager](#manager)
+  - [model](#model)
+  - [main](#main)
+
 ## dao (Data Access Object)
 Os DAOs existem para separar o acesso ao banco de dados da lógica do código. Cada DAO é responsável por realizar operações de persistência para uma entidade específica do sistema.
 
